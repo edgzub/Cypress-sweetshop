@@ -181,6 +181,24 @@ npx cypress install
 
 ### CI/CD problemos?
 
+**❌ "npm ci can only install packages..." klaida?**
+
+```bash
+# 1. Patikrinti ar package-lock.json yra commitintas
+git ls-files | grep package-lock.json
+
+# 2. Jei nėra, pridėti:
+npm install
+git add package-lock.json
+git commit -m "fix: add package-lock.json"
+git push
+
+# 3. Patikrinti .gitignore - neturėtų būti:
+# package-lock.json  ❌ Ištrinti šią eilutę!
+```
+
+**Kitos problemos?**
+
 Žiūrėti: `.github/CI-CD-SETUP.md` - ten pilnos instrukcijos ir troubleshooting!
 
 ## ✨ Sekantys Žingsniai

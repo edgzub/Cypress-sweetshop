@@ -191,6 +191,35 @@ Patikrinti ar yra:
        branches: [ main ]  # Turi būti "main", ne "master"
    ```
 
+### ❌ ERROR: "npm ci can only install packages when your package.json and package-lock.json are in sync"
+
+**Problema:** `package-lock.json` neegzistuoja arba yra ignore'inamas `.gitignore` faile.
+
+**Sprendimas:**
+
+1. **Pašalinti `package-lock.json` iš `.gitignore`:**
+   ```bash
+   # Redaguoti .gitignore ir ištrinti eilutę:
+   # package-lock.json
+   ```
+
+2. **Sugeneruoti naują `package-lock.json`:**
+   ```bash
+   npm install
+   ```
+
+3. **Commitinti į repository:**
+   ```bash
+   git add package-lock.json
+   git commit -m "fix: add package-lock.json for CI/CD"
+   git push origin main
+   ```
+
+**Kodėl svarbu:**
+- `npm ci` yra greitesnis nei `npm install` CI/CD aplinkoje
+- `npm ci` užtikrina, kad visi instaliuoja tą pačią dependencies versiją
+- `package-lock.json` **TURI** būti commitintas į git repository
+
 ## 💡 Best Practices
 
 ### 1. Suskirstyti testus pagal prioritetą:
