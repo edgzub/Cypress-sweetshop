@@ -1,0 +1,32 @@
+{
+  "name": "cypress-sweetshop-tests",
+  "version": "1.0.0",
+  "description": "Cypress E2E tests for Sweet Shop demo application",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run",
+    "test:chrome": "cypress run --browser chrome",
+    "test:firefox": "cypress run --browser firefox",
+    "test:edge": "cypress run --browser edge",
+    "test:headed": "cypress run --headed",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --spec 'cypress/e2e/sweetshop.*.cy.js'",
+    "cy:run:smoke": "cypress run --spec 'cypress/e2e/sweetshop.smoke.cy.js'",
+    "cy:run:auth": "cypress run --spec 'cypress/e2e/sweetshop.auth.cy.js'",
+    "cy:run:basket": "cypress run --spec 'cypress/e2e/sweetshop.basket-validation.cy.js'",
+    "cy:run:catalog": "cypress run --spec 'cypress/e2e/sweetshop.catalog-basket.cy.js'",
+    "cy:run:checkout": "cypress run --spec 'cypress/e2e/sweetshop.checkout.cy.js'",
+    "cy:run:homepage": "cypress run --spec 'cypress/e2e/sweetshop.homepage.cy.js'"
+  },
+  "keywords": [
+    "cypress",
+    "e2e",
+    "testing",
+    "sweetshop"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^15.6.0"
+  }
+}
