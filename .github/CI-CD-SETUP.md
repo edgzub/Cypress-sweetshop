@@ -220,6 +220,29 @@ Patikrinti ar yra:
 - `npm ci` užtikrina, kad visi instaliuoja tą pačią dependencies versiją
 - `package-lock.json` **TURI** būti commitintas į git repository
 
+### ⚠️ WARNING: "No files were found with the provided path: cypress/videos"
+
+**Problema:** Workflow tikisi `cypress/videos`, bet jie disable'inti config'e (`video: false`).
+
+**Sprendimas:** Jau pataisyta! Workflows atnaujinti, kad:
+- Videos upload **pašalintas** (nes video: false)
+- Results upload **pašalintas** (nes nenaudojame custom reporters)
+- Screenshots upload **lieka** tik kai testai failed (`if: failure()`)
+
+### ❌ Tests failed but no error shown
+
+**Problema:** Testai nepavyksta, bet nematote kodėl.
+
+**Kaip peržiūrėti klaidas:**
+1. GitHub Actions → Failed workflow
+2. Spausti ant failed job (pvz., "cypress-run (chrome)")
+3. Išskleisti "Run Cypress tests" sekciją
+4. Matysite pilnus Cypress error messages
+
+**Arba:**
+1. Download screenshots artifacts (jei testai failed)
+2. Peržiūrėti screenshots - ten matysis kur testai failed
+
 ## 💡 Best Practices
 
 ### 1. Suskirstyti testus pagal prioritetą:
