@@ -57,11 +57,9 @@ jobs:
           record: false
 
       - name: Upload test results
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: manual-test-results
-          path: |
-            cypress/screenshots
-            cypress/videos
+          path: cypress/screenshots
           if-no-files-found: ignore

@@ -19,7 +19,6 @@ jobs:
       fail-fast: false
       matrix:
         browser: [chrome, firefox, edge]
-        containers: [1, 2]
     
     steps:
       - name: Checkout code
@@ -40,35 +39,25 @@ jobs:
           browser: ${{ matrix.browser }}
           spec: cypress/e2e/sweetshop.*.cy.js
           record: false
-          parallel: true
-          group: 'Tests on ${{ matrix.browser }}'
         env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload screenshots on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: cypress-screenshots-${{ matrix.browser }}-${{ matrix.containers }}
+          name: cypress-screenshots-${{ matrix.browser }}
           path: cypress/screenshots
           if-no-files-found: ignore
 
-      - name: Upload videos
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-videos-${{ matrix.browser }}-${{ matrix.containers }}
-          path: cypress/videos
-          if-no-files-found: ignore
-
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-results-${{ matrix.browser }}-${{ matrix.containers }}
-          path: cypress/results
-          if-no-files-found: ignore
+      # Note: Videos disabled in cypress.config.js (video: false)
+      # - name: Upload videos
+      #   if: always()
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: cypress-videos-${{ matrix.browser }}-${{ matrix.containers }}
+      #     path: cypress/videos
+      #     if-no-files-found: ignore
 
   smoke-tests:
     runs-on: ubuntu-latest
