@@ -1,0 +1,12 @@
+{
+  "items": [
+    { "name": "Chocolate Cups", "price": 1.00 },
+    { "name": "Sherbert Straws", "price": 0.75 },
+    { "name": "Sherbet Discs", "price": 0.95 },
+    { "name": "Bon Bons", "price": 1.00 }
+  ],
+  "shipping": {
+    "collect": 0.00,
+    "standard": 1.99
+  }
+}
