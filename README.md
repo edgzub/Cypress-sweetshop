@@ -1,4 +1,4 @@
-# Cypress Sweet Shop Tests 🍬
+# Cypress Sweet Shop Tests
 
 [![Cypress Tests](https://github.com/edgzub/Cypress-sweetshop/actions/workflows/cypress.yml/badge.svg)](https://github.com/edgzub/Cypress-sweetshop/actions/workflows/cypress.yml)
 [![Nightly Tests](https://github.com/edgzub/Cypress-sweetshop/actions/workflows/nightly.yml/badge.svg)](https://github.com/edgzub/Cypress-sweetshop/actions/workflows/nightly.yml)
@@ -6,7 +6,7 @@
 
 Automatizuoti E2E testai Sweet Shop demo aplikacijai naudojant Cypress.
 
-## 📋 Turinys
+## Turinys
 
 - [Projekto aprašymas](#projekto-aprašymas)
 - [Reikalavimai](#reikalavimai)
@@ -15,26 +15,26 @@ Automatizuoti E2E testai Sweet Shop demo aplikacijai naudojant Cypress.
 - [CI/CD](#cicd)
 - [Projekto struktūra](#projekto-struktūra)
 
-## 🎯 Projekto aprašymas
+## Projekto aprašymas
 
 Šis projektas testuoja [Sweet Shop](https://sweetshop.netlify.app) demo aplikaciją, kuri yra sąmoningai sukurta su klaidomis testavimo tikslais.
 
 ### Testuojami scenarijai:
 
-- ✅ **Smoke tests** - pagrindiniai kritiniai testai
-- 🔐 **Authentication** - login funkcionalumas
-- 🏠 **Homepage** - pagrindinio puslapio turinio validacija
-- 🛒 **Catalog & Basket** - prekių katalogas ir krepšelio operacijos
-- 📋 **Basket Validation** - formos validacijos testai
-- 💳 **Checkout** - checkout proceso testai
+-  **Smoke tests** - pagrindiniai kritiniai testai
+-  **Authentication** - login funkcionalumas
+-  **Homepage** - pagrindinio puslapio turinio validacija
+-  **Catalog & Basket** - prekių katalogas ir krepšelio operacijos
+-  **Basket Validation** - formos validacijos testai
+-  **Checkout** - checkout proceso testai
 
-## 🔧 Reikalavimai
+##  Reikalavimai
 
 - Node.js 18+ arba 20+
 - npm arba yarn
 - Git
 
-## 📥 Įdiegimas
+##  Įdiegimas
 
 1. **Klonuoti repozitoriją:**
 ```bash
@@ -47,7 +47,7 @@ cd Cypress-sweetshop
 npm install
 ```
 
-## 🚀 Testų paleidimas
+##  Testų paleidimas
 
 ### Interaktyvi Cypress Console
 ```bash
@@ -83,42 +83,42 @@ npm run test:edge     # Edge
 npm run test:headed
 ```
 
-## 🔄 CI/CD
+##  CI/CD
 
 ### GitHub Actions Workflows
 
 Projektas naudoja **4 GitHub Actions workflows**:
 
-#### 1️⃣ **Main Cypress Tests** (`.github/workflows/cypress.yml`)
-- ⚡ Paleidžiamas: `push` į `main`/`develop` šakas, `pull request`, kasdien 9:00 UTC
-- 🌐 Testuoja: **Chrome, Firefox, Edge** naršyklėse
-- 🔄 Naudoja: Paralelizaciją su 2 konteineriais
-- 📊 Rezultatai: Automatiškai įkeliami screenshots/videos esant klaidoms
+####  **Main Cypress Tests** (`.github/workflows/cypress.yml`)
+-  Paleidžiamas: `push` į `main`/`develop` šakas, `pull request`, kasdien 9:00 UTC
+-  Testuoja: **Chrome, Firefox, Edge** naršyklėse
+-  Naudoja: Paralelizaciją su 2 konteineriais
+-  Rezultatai: Automatiškai įkeliami screenshots/videos esant klaidoms
 
 **Kaip veikia:**
 ```yaml
 Trigger: push to main → Install deps → Run tests in parallel → Upload artifacts
 ```
 
-#### 2️⃣ **Nightly Full Suite** (`.github/workflows/nightly.yml`)
-- 🌙 Paleidžiamas: Kiekvieną naktį 2:00 UTC
-- 📋 Testuoja: Visus 6 test suites atskirai
-- 📧 Siunčia: Pranešimus apie rezultatus
-- 🎯 Tikslas: Pilnas regresijos testavimas
+####  **Nightly Full Suite** (`.github/workflows/nightly.yml`)
+-  Paleidžiamas: Kiekvieną naktį 2:00 UTC
+-  Testuoja: Visus 6 test suites atskirai
+-  Siunčia: Pranešimus apie rezultatus
+-  Tikslas: Pilnas regresijos testavimas
 
-#### 3️⃣ **PR Tests** (`.github/workflows/pr-tests.yml`)
-- 🔍 Paleidžiamas: Pull Request atidarymas/atnaujinimas
-- ⚡ Testuoja: Tik smoke ir auth testus (greiti kritiškiausi testai)
-- 💬 Komentuoja: PR su rezultatais
-- 🎯 Tikslas: Greitas feedback ciklas
+####  **PR Tests** (`.github/workflows/pr-tests.yml`)
+-  Paleidžiamas: Pull Request atidarymas/atnaujinimas
+-  Testuoja: Tik smoke ir auth testus (greiti kritiškiausi testai)
+-  Komentuoja: PR su rezultatais
+-  Tikslas: Greitas feedback ciklas
 
-#### 4️⃣ **Manual Test Run** (`.github/workflows/manual-run.yml`)
-- 👤 Paleidžiamas: Rankiniu būdu per GitHub UI
-- ⚙️ Galima pasirinkti:
+####  **Manual Test Run** (`.github/workflows/manual-run.yml`)
+-  Paleidžiamas: Rankiniu būdu per GitHub UI
+-  Galima pasirinkti:
   - Kokį spec failą paleisti
   - Kokią naršyklę naudoti
   - Headed/headless režimą
-- 🎯 Tikslas: Debugging ir ad-hoc testavimas
+-  Tikslas: Debugging ir ad-hoc testavimas
 
 ### Kaip paleisti CI/CD:
 
@@ -141,10 +141,10 @@ git push origin main
 
 ```
 GitHub → Actions tab → Pasirinkti workflow run → Peržiūrėti:
-├── ✅ Test results
-├── 📸 Screenshots (jei failed)
-├── 🎥 Videos
-└── 📊 Logs
+├── Test results
+├── Screenshots (jei failed)
+├── Videos
+└── Logs
 ```
 
 ### Artifacts:
@@ -153,7 +153,7 @@ Visi artifacts (screenshots, videos) saugomi **90 dienų** ir pasiekiami:
 Actions → Workflow run → Artifacts section → Download
 ```
 
-## 📁 Projekto struktūra
+## Projekto struktūra
 
 ```
 cypress/
@@ -183,7 +183,7 @@ cypress.config.js                     # Cypress konfiguracija
 package.json                          # NPM dependencies ir scripts
 ```
 
-## 🛠️ Custom Commands
+## Custom Commands
 
 Projektas turi kelis custom Cypress commands:
 
@@ -194,7 +194,7 @@ cy.basketBadge()                     // Gauti krepšelio badge elementą
 cy.assertNoVisibleInvalidFeedback()  // Tikrinti validacijos klaidas
 ```
 
-## 🐛 Žinomos aplikacijos problemos
+## Žinomos aplikacijos problemos
 
 Sweet Shop aplikacija turi sąmoningai įdėtų klaidų:
 
@@ -218,11 +218,11 @@ Testai yra pritaikyti dirbti su šiomis problemomis.
 | **Total** | **51** | **✅** |
 
 
-## 👤 Autorius
+## Autorius
 
 **edgzub** - [GitHub](https://github.com/edgzub)
 
-## 🔗 Nuorodos
+## Nuorodos
 
 - [Sweet Shop Demo](https://sweetshop.netlify.app)
 - [Cypress Documentation](https://docs.cypress.io)
