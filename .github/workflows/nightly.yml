@@ -1,0 +1,64 @@
+name: Nightly Full Test Suite
+
+on:
+  schedule:
+    # Run every night at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  full-test-suite:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        spec:
+          - cypress/e2e/sweetshop.smoke.cy.js
+          - cypress/e2e/sweetshop.auth.cy.js
+          - cypress/e2e/sweetshop.homepage.cy.js
+          - cypress/e2e/sweetshop.catalog-basket.cy.js
+          - cypress/e2e/sweetshop.basket-validation.cy.js
+          - cypress/e2e/sweetshop.checkout.cy.js
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Cypress test suite
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          spec: ${{ matrix.spec }}
+          record: false
+
+      - name: Upload test artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.spec }}
+          path: cypress/screenshots
+          if-no-files-found: ignore
+
+  notify:
+    needs: full-test-suite
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+      - name: Send notification
+        run: |
+          if [ "${{ needs.full-test-suite.result }}" == "success" ]; then
+            echo "✅ All nightly tests passed!"
+          else
+            echo "❌ Some nightly tests failed!"
+          fi
